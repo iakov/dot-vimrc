@@ -13,6 +13,8 @@ syntax on
 " Vim UI
 "--------
 " color scheme
+let g:molokai_original = 1
+colorscheme molokai
 set background=dark
 colorscheme Tomorrow-Night-Eighties
 
@@ -156,6 +158,8 @@ let NERDCompactSexyComs=1
 
 " ZenCoding
 let g:user_emmet_expandabbr_key='<C-j>'
+let g:user_emmet_next_key='<C-n>'
+let g:user_emmet_prev_key='<C-p>'
 
 " powerline
 "let g:Powerline_symbols = 'fancy'
@@ -244,6 +248,7 @@ nnoremap ; :
 :command Q q
 :command Qa qa
 :command QA qa
+
 
 " for macvim
 if has("gui_running")
