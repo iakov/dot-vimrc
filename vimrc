@@ -14,7 +14,6 @@ syntax on
 "--------
 " color scheme
 let g:molokai_original = 1
-colorscheme molokai
 set background=dark
 colorscheme Tomorrow-Night-Eighties
 
