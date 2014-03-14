@@ -14,7 +14,7 @@ syntax on
 "--------
 " color scheme
 set background=dark
-color solarized
+colorscheme Tomorrow-Night-Eighties
 
 " highlight current line
 au WinLeave * set nocursorline nocursorcolumn
@@ -248,8 +248,8 @@ nnoremap ; :
 " for macvim
 if has("gui_running")
     set go=aAce  " remove toolbar
-    "set transparency=30
-    set guifont=Monaco:h13
+    "set transparency=10
+    set guifont=Menlo:h14
     set showtabline=2
     set columns=140
     set lines=40
@@ -266,3 +266,7 @@ if has("gui_running")
     map <D-9> 9gt
     map <D-0> :tablast<CR>
 endif
+if &diff
+    colors peaksea
+endif
+
