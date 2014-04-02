@@ -61,9 +61,10 @@ set expandtab       " expand tab to space
 autocmd FileType php setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
 autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
 autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
-autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+" autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
 autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
-autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
+
+" autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
 autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
 
 " syntax support
@@ -76,7 +77,7 @@ let g:html_indent_style1 = "inc"
 "-----------------
 " Plugin settings
 "-----------------
-" Rainbow parentheses for Lisp and variants
+" === Rainbow parentheses for Lisp and variants ===
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3'],
     \ ['Darkblue',    'SeaGreen3'],
@@ -98,7 +99,7 @@ let g:rbpt_colorpairs = [
 let g:rbpt_max = 16
 autocmd Syntax lisp,scheme,clojure,racket RainbowParenthesesToggle
 
-" tabbar
+" === tabbar ===
 let g:Tb_MaxSize = 2
 let g:Tb_TabWrap = 1
 
@@ -107,10 +108,10 @@ hi Tb_Changed guifg=green ctermfg=green
 hi Tb_VisibleNormal ctermbg=252 ctermfg=235
 hi Tb_VisibleChanged guifg=green ctermbg=252 ctermfg=white
 
-" easy-motion
+" === easy-motion ===
 let g:EasyMotion_leader_key = '<Leader>'
 
-" Tagbar
+" === Tagbar ===
 let g:tagbar_left=1
 let g:tagbar_width=30
 let g:tagbar_autofocus = 1
@@ -141,7 +142,7 @@ if executable('coffeetags')
     \ }
 endif
 
-" Nerd Tree
+" === Nerd Tree ===
 let NERDChristmasTree=0
 let NERDTreeWinSize=30
 let NERDTreeChDirMode=2
@@ -150,20 +151,20 @@ let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
 let NERDTreeShowBookmarks=1
 let NERDTreeWinPos = "right"
 
-" nerdcommenter
+" === nerdcommenter ===
 let NERDSpaceDelims=1
 " nmap <D-/> :NERDComToggleComment<cr>
 let NERDCompactSexyComs=1
 
-" ZenCoding
+" === ZenCoding ===
 let g:user_emmet_expandabbr_key='<C-j>'
 let g:user_emmet_next_key='<C-n>'
 let g:user_emmet_prev_key='<C-p>'
 
-" powerline
+" === powerline ===
 "let g:Powerline_symbols = 'fancy'
 
-" NeoComplCache
+" === NeoComplCache ===
 let g:neocomplcache_enable_at_startup=1
 let g:neoComplcache_disableautocomplete=1
 "let g:neocomplcache_enable_underbar_completion = 1
@@ -184,19 +185,62 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType c setlocal omnifunc=ccomplete#Complete
+
 if !exists('g:neocomplcache_omni_patterns')
   let g:neocomplcache_omni_patterns = {}
 endif
 let g:neocomplcache_omni_patterns.erlang = '[a-zA-Z]\|:'
 
-" SuperTab
-" let g:SuperTabDefultCompletionType='context'
+" === vim-marching ===
+" path to clang command
+let g:marching_clang_command = '/usr/bin/clang'
+" directory paths to include
+let g:marching_include_paths = [
+    \ "/usr/include",
+    \ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/c++/v1"
+    \]
+" cooperate with neocomplete
+let g:marching_enable_neocomplete = 1
+
+if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomple#force_omni_input_patterns = {}
+endif
+
+let g:neocomple#force_omni_input_patterns.cpp =
+            \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+
+" === SuperTab ===
+"let g:SuperTabDefultCompletionType='context'
 let g:SuperTabDefaultCompletionType = '<C-X><C-U>'
 let g:SuperTabRetainCompletionType=2
 
-" ctrlp
+" === ctrlp ===
 set wildignore+=*/tmp/*,*.so,*.o,*.a,*.obj,*.swp,*.zip,*.pyc,*.pyo,*.class,.DS_Store  " MacOSX/Linux
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
+
+" === syntastic ===
+let g:syntastic_check_on_open = 1
+"let g:syntastic_cpp_include_dirs = ['/usr/include']
+"let g:syntastic_cpp_remove_include_errors = 1
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
+
+" === vim-operator-highlight ===
+let g:ophigh_color = '#00DEDE'
+let g:ophigh_filetypes_to_ignore = {'javascript' : 1}
+
+" === ultisnips ===
+let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="<C-n>"
+"let g:UltiSnipsJumpBackwardTrigger="<C-p>"
+
+" === YCM ===
+"let g:ycm_global_ycm_extra_conf = '/Users/siyuan/.ycm/templates/.ycm_extra_conf.py'
+"let g:ycm_collect_identifiers_from_tags_files = 1
+"let g:ycm_confirm_extra_conf = 0
+"let g:ycm_filetype_specific_completion_to_disable = {'javascript' : 1}
+
 
 " Keybindings for plugin toggle
 nnoremap <F2> :set invpaste paste?<CR>
