@@ -9,13 +9,15 @@ filetype plugin indent on
 " enable syntax hightlight and completion
 syntax on
 
+" map <Leader> to ','
+let mapleader=","
+
 "--------
 " Vim UI
 "--------
 " color scheme
-let g:molokai_original = 1
 set background=dark
-colorscheme Tomorrow-Night-Eighties
+colorscheme Tomorrow-Night-Bright
 
 " highlight current line
 au WinLeave * set nocursorline nocursorcolumn
@@ -63,7 +65,7 @@ autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=12
 autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
 autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
 autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
-autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
+"autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
 autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
 
 " syntax support
@@ -76,7 +78,7 @@ let g:html_indent_style1 = "inc"
 "-----------------
 " Plugin settings
 "-----------------
-" Rainbow parentheses for Lisp and variants
+" === Rainbow parentheses for Lisp and variants ===
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3'],
     \ ['Darkblue',    'SeaGreen3'],
@@ -98,7 +100,7 @@ let g:rbpt_colorpairs = [
 let g:rbpt_max = 16
 autocmd Syntax lisp,scheme,clojure,racket RainbowParenthesesToggle
 
-" tabbar
+" === tabbar ===
 let g:Tb_MaxSize = 2
 let g:Tb_TabWrap = 1
 
@@ -107,10 +109,10 @@ hi Tb_Changed guifg=green ctermfg=green
 hi Tb_VisibleNormal ctermbg=252 ctermfg=235
 hi Tb_VisibleChanged guifg=green ctermbg=252 ctermfg=white
 
-" easy-motion
+" === easy-motion ===
 let g:EasyMotion_leader_key = '<Leader>'
 
-" Tagbar
+" === Tagbar ===
 let g:tagbar_left=1
 let g:tagbar_width=30
 let g:tagbar_autofocus = 1
@@ -141,7 +143,8 @@ if executable('coffeetags')
     \ }
 endif
 
-" Nerd Tree
+" === Nerd Tree ===
+let g:nerdtree_tabs_open_on_console_startup=1
 let NERDChristmasTree=0
 let NERDTreeWinSize=30
 let NERDTreeChDirMode=2
@@ -150,12 +153,12 @@ let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
 let NERDTreeShowBookmarks=1
 let NERDTreeWinPos = "right"
 
-" nerdcommenter
+" === nerdcommenter ===
 let NERDSpaceDelims=1
 " nmap <D-/> :NERDComToggleComment<cr>
 let NERDCompactSexyComs=1
 
-" ZenCoding
+" === ZenCoding ===
 let g:user_emmet_expandabbr_key='<C-j>'
 let g:user_emmet_next_key='<C-n>'
 let g:user_emmet_prev_key='<C-p>'
@@ -173,10 +176,10 @@ let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 set completeopt-=preview
 
-imap <C-k> <Plug>(neocomplcache_snippets_force_expand)
-smap <C-k> <Plug>(neocomplcache_snippets_force_expand)
-imap <C-l> <Plug>(neocomplcache_snippets_force_jump)
-smap <C-l> <Plug>(neocomplcache_snippets_force_jump)
+"imap <C-k> <Plug>(neocomplcache_snippets_force_expand)
+"smap <C-k> <Plug>(neocomplcache_snippets_force_expand)
+"imap <C-l> <Plug>(neocomplcache_snippets_force_jump)
+"smap <C-l> <Plug>(neocomplcache_snippets_force_jump)
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -194,13 +197,28 @@ let g:neocomplcache_omni_patterns.erlang = '[a-zA-Z]\|:'
 let g:SuperTabDefaultCompletionType = '<C-X><C-U>'
 let g:SuperTabRetainCompletionType=2
 
-" ctrlp
+" === ctrlp ===
 set wildignore+=*/tmp/*,*.so,*.o,*.a,*.obj,*.swp,*.zip,*.pyc,*.pyo,*.class,.DS_Store  " MacOSX/Linux
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
 
+" === vim-operator-hightlight ===
+let g:ophigh_color = '#00e5e5'
+
+" === syntastic ===
+let g:syntastic_check_on_open = 1
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
+
+" === ultisnips ===
+let g:UltiSnipsExpandTrigger="<C-e>"
+let g:UltiSnipsJumpForwardTrigger="<C-l>"
+let g:UltiSnipsJumpBackwardTrigger="<C-k>"
+
+
 " Keybindings for plugin toggle
-nnoremap <F2> :set invpaste paste?<CR>
-set pastetoggle=<F2>
+"nnoremap <F2> :set invpaste paste?<CR>
+"set pastetoggle=<F2>
+nnoremap <F2> :YcmForceCompileAndDiagnostics
 nmap <F5> :TagbarToggle<cr>
 nmap <F6> :NERDTreeToggle<cr>
 nmap <F3> :GundoToggle<cr>
@@ -253,7 +271,7 @@ nnoremap ; :
 if has("gui_running")
     set go=aAce  " remove toolbar
     "set transparency=10
-    set guifont=Menlo:h14
+    set guifont=Ubuntu\ Mono:h14
     set showtabline=2
     set columns=140
     set lines=40
@@ -270,7 +288,9 @@ if has("gui_running")
     map <D-9> 9gt
     map <D-0> :tablast<CR>
 endif
-if &diff
-    colors peaksea
-endif
+"if &diff
+"    colors peaksea
+"endif
+
+
 

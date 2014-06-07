@@ -12,15 +12,18 @@ Bundle 'gmarik/vundle'
 " Code Completions
 "------------------
 Bundle 'Shougo/neocomplcache'
+"Bundle 'Valloric/YouCompleteMe'
 Bundle 'mattn/emmet-vim'
 Bundle 'Raimondi/delimitMate'
 Bundle 'ervandew/supertab'
 " snippets
-Bundle 'garbas/vim-snipmate'
+Bundle 'SirVer/ultisnips'
+
+"Bundle 'garbas/vim-snipmate'
 Bundle 'honza/vim-snippets'
 "------ snipmate dependencies -------
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim'
+"Bundle 'MarcWeber/vim-addon-mw-utils'
+"Bundle 'tomtom/tlib_vim'
 
 "-----------------
 " Fast navigation
@@ -40,6 +43,7 @@ Bundle 'nathanaelkane/vim-indent-guides'
 "--------------
 " IDE features
 "--------------
+Bundle 'terryma/vim-multiple-cursors'
 Bundle 'scrooloose/nerdtree'
 Bundle 'humiaozuzu/TabBar'
 Bundle 'majutsushi/tagbar'
@@ -47,21 +51,24 @@ Bundle 'mileszs/ack.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-powerline'
-Bundle 'scrooloose/syntastic'
+"Bundle 'scrooloose/syntastic'
 Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'jistr/vim-nerdtree-tabs'
+Bundle 'chazy/cscope_maps'
 
 "-------------
 " Other Utils
 "-------------
 " Bundle 'humiaozuzu/fcitx-status'
 Bundle 'nvie/vim-togglemouse'
+Bundle 'terryma/vim-multiple-cursors'
+Bundle 'StrikeW/vim-operator-highlight'
 
 "----------------------------------------
 " Syntax/Indent for language enhancement
 "----------------------------------------
 "------- web backend ---------
-Bundle '2072/PHP-Indenting-for-VIm'
+"Bundle '2072/PHP-Indenting-for-VIm'
 "Bundle 'tpope/vim-rails'
 Bundle 'lepture/vim-jinja'
 "Bundle 'digitaltoad/vim-jade'
@@ -92,16 +99,20 @@ Bundle 'kien/rainbow_parentheses.vim'
 " Bundle 'vim-scripts/VimClojure'
 " Bundle 'rosstimson/scala-vim-support'
 
+" === C ===
+"Bundle 'octol/vim-cpp-enhanced-highlight'
+Bundle 'vim-scripts/aftersyntaxc.vim'
+
 "--------------
 " Color Schemes
 "--------------
-Bundle 'rickharris/vim-blackboard'
+"Bundle 'rickharris/vim-blackboard'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'rickharris/vim-monokai'
-Bundle 'tpope/vim-vividchalk'
-Bundle 'Lokaltog/vim-distinguished'
-Bundle 'chriskempson/vim-tomorrow-theme'
-Bundle 'fisadev/fisa-vim-colorscheme'
+"Bundle 'tpope/vim-vividchalk'
+"Bundle 'Lokaltog/vim-distinguished'
+Bundle 'StrikeW/vim-tomorrow-theme'
+"Bundle 'fisadev/fisa-vim-colorscheme'
 Bundle 'vim-scripts/peaksea'
 
 filetype plugin indent on     " required!
