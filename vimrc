@@ -12,6 +12,9 @@ syntax on
 " map <Leader> to ','
 let mapleader=","
 
+" share clipboard
+set clipboard=unnamed
+
 "--------
 " Vim UI
 "--------
@@ -144,7 +147,7 @@ if executable('coffeetags')
 endif
 
 " === Nerd Tree ===
-let g:nerdtree_tabs_open_on_console_startup=1
+let g:nerdtree_tabs_open_on_console_startup=0
 let NERDChristmasTree=0
 let NERDTreeWinSize=30
 let NERDTreeChDirMode=2
@@ -210,9 +213,11 @@ let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 
 " === ultisnips ===
-let g:UltiSnipsExpandTrigger="<C-e>"
-let g:UltiSnipsJumpForwardTrigger="<C-l>"
-let g:UltiSnipsJumpBackwardTrigger="<C-k>"
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsListSnippets = "<C-tab>"  " list all available snippets
+let g:UltiSnipsJumpForwardTrigger = "<C-l>"
+let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
+let g:UltiSnipsUsePythonVersion = 2
 
 
 " Keybindings for plugin toggle
@@ -271,10 +276,11 @@ nnoremap ; :
 if has("gui_running")
     set go=aAce  " remove toolbar
     "set transparency=10
-    set guifont=Ubuntu\ Mono:h14
+    set guifont=Menlo:h14
     set showtabline=2
     set columns=140
     set lines=40
+    set linespace=2
     noremap <D-M-Left> :tabprevious<cr>
     noremap <D-M-Right> :tabnext<cr>
     map <D-1> 1gt
