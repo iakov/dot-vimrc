@@ -11,11 +11,11 @@ Plugin 'gmarik/vundle'
 "------------------
 " Code Completions
 "------------------
-Plugin 'Shougo/neocomplcache'
-"Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Shougo/neocomplcache'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'mattn/emmet-vim'
 Plugin 'Raimondi/delimitMate'
-Plugin 'ervandew/supertab'
+"Plugin 'ervandew/supertab'
 " snippets
 Plugin 'SirVer/ultisnips'
 
