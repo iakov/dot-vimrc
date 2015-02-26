@@ -227,6 +227,9 @@ let g:ycm_confirm_extra_conf = 1
 let g:ycm_filetype_specific_completion_to_disable = "{'javascript' : 1}"
 let g:ycm_key_invoke_completion = '<C-Space>'
 
+" === delimitMate ===
+au FileType c,cpp let b:delimitMate_matchpairs = "(:),[:],{:}"
+
 
 " Keybindings for plugin toggle
 "nnoremap <F2> :set invpaste paste?<CR>
