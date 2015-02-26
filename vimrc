@@ -121,32 +121,33 @@ let g:tagbar_width=30
 let g:tagbar_autofocus = 1
 let g:tagbar_sort = 0
 let g:tagbar_compact = 1
-" tag for coffee
-if executable('coffeetags')
-  let g:tagbar_type_coffee = {
-        \ 'ctagsbin' : 'coffeetags',
-        \ 'ctagsargs' : '',
-        \ 'kinds' : [
-        \ 'f:functions',
-        \ 'o:object',
-        \ ],
-        \ 'sro' : ".",
-        \ 'kind2scope' : {
-        \ 'f' : 'object',
-        \ 'o' : 'object',
-        \ }
-        \ }
+" " tag for coffee
+" if executable('coffeetags')
+  " let g:tagbar_type_coffee = {
+        " \ 'ctagsbin' : 'coffeetags',
+        " \ 'ctagsargs' : '',
+        " \ 'kinds' : [
+        " \ 'f:functions',
+        " \ 'o:object',
+        " \ ],
+        " \ 'sro' : ".",
+        " \ 'kind2scope' : {
+        " \ 'f' : 'object',
+        " \ 'o' : 'object',
+        " \ }
+        " \ }
 
-  let g:tagbar_type_markdown = {
-    \ 'ctagstype' : 'markdown',
-    \ 'sort' : 0,
-    \ 'kinds' : [
-        \ 'h:sections'
-    \ ]
-    \ }
-endif
+  " let g:tagbar_type_markdown = {
+    " \ 'ctagstype' : 'markdown',
+    " \ 'sort' : 0,
+    " \ 'kinds' : [
+        " \ 'h:sections'
+    " \ ]
+    " \ }
+" endif
 
 " === Nerd Tree ===
+let g:nerdtree_tabs_open_on_gui_startup=0
 let g:nerdtree_tabs_open_on_console_startup=0
 let NERDChristmasTree=0
 let NERDTreeWinSize=30
@@ -213,11 +214,18 @@ let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 
 " === ultisnips ===
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsListSnippets = "<C-tab>"  " list all available snippets
+let g:UltiSnipsExpandTrigger = "<C-e>"
+"let g:UltiSnipsListSnippets = "<C-tab>"  " list all available snippets
 let g:UltiSnipsJumpForwardTrigger = "<C-l>"
 let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 let g:UltiSnipsUsePythonVersion = 2
+
+" === YCM ===
+"let g:ycm_global_ycm_extra_conf = '/Users/siyuan/.ycm/templates/.ycm_extra_conf_c.py'
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_confirm_extra_conf = 1
+let g:ycm_filetype_specific_completion_to_disable = "{'javascript' : 1}"
+let g:ycm_key_invoke_completion = '<C-Space>'
 
 
 " Keybindings for plugin toggle
@@ -294,9 +302,9 @@ if has("gui_running")
     map <D-9> 9gt
     map <D-0> :tablast<CR>
 endif
-"if &diff
-"    colors peaksea
-"endif
+" if &diff
+   " colors peaksea
+" endif
 
 
 
