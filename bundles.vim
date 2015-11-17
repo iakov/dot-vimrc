@@ -13,7 +13,7 @@ Plugin 'gmarik/vundle'
 "------------------
 "Plugin 'Shougo/neocomplcache'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'mattn/emmet-vim'
+"Plugin 'mattn/emmet-vim'
 Plugin 'Raimondi/delimitMate'
 "Plugin 'ervandew/supertab'
 " snippets
@@ -36,7 +36,7 @@ Plugin 'Lokaltog/vim-easymotion'
 "--------------
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'sjl/gundo.vim'
+"Plugin 'sjl/gundo.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'nathanaelkane/vim-indent-guides'
 
@@ -44,7 +44,7 @@ Plugin 'nathanaelkane/vim-indent-guides'
 " IDE features
 "--------------
 Plugin 'scrooloose/nerdtree'
-Plugin 'humiaozuzu/TabBar'
+"Plugin 'humiaozuzu/TabBar'
 Plugin 'majutsushi/tagbar'
 Plugin 'mileszs/ack.vim'
 Plugin 'kien/ctrlp.vim'
@@ -52,8 +52,9 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'Lokaltog/vim-powerline'
 "Plugin 'scrooloose/syntastic'
 Plugin 'bronson/vim-trailing-whitespace'
-Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'chazy/cscope_maps'
+Plugin 'jistr/vim-nerdtree-tabs' "make nerdtree consistent in each buffer
+Plugin 'chazy/cscope_maps' "cscope shortcut mappings
+Plugin 'moll/vim-bbye' "delete buffer without close window
 
 "-------------
 " Other Utils
@@ -75,9 +76,9 @@ Plugin 'lepture/vim-jinja'
 "------- web frontend ----------
 Plugin 'othree/html5.vim'
 " Plugin 'tpope/vim-haml'
-Plugin 'pangloss/vim-javascript'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'nono/jquery.vim'
+"Plugin 'pangloss/vim-javascript'
+"Plugin 'kchmck/vim-coffee-script'
+"Plugin 'nono/jquery.vim'
 " Plugin 'groenewege/vim-less'
 " Plugin 'wavded/vim-stylus'
 " Plugin 'nono/vim-handlebars'
@@ -105,14 +106,7 @@ Plugin 'vim-scripts/aftersyntaxc.vim'
 "--------------
 " Color Schemes
 "--------------
-"Plugin 'rickharris/vim-blackboard'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'rickharris/vim-monokai'
-"Plugin 'tpope/vim-vividchalk'
-"Plugin 'Lokaltog/vim-distinguished'
 Plugin 'Jarvishappy/vim-tomorrow-theme'
-"Plugin 'fisadev/fisa-vim-colorscheme'
-Plugin 'vim-scripts/peaksea'
 
 call vundle#end()             " required!
 filetype plugin indent on     " required!

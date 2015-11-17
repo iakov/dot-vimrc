@@ -15,6 +15,16 @@ let mapleader=","
 " share clipboard
 set clipboard=unnamed
 
+" deal with eggcache paste multiple times
+" p' to paste, 'gv' to re-select what was originally selected. 'y' to copy it again
+xnoremap p pgvy
+
+" make vsplit put the new buffer on the right
+set splitright
+
+" make split put the new buffer below the current buffer
+set splitbelow
+
 "--------
 " Vim UI
 "--------
@@ -59,13 +69,16 @@ set smartindent     " indent when
 set tabstop=4       " tab width
 set softtabstop=4   " backspace
 set shiftwidth=4    " indent width
-" set textwidth=79
+set textwidth=120
 " set smarttab
 set expandtab       " expand tab to space
 
-autocmd FileType php setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+" file type stuffs
+autocmd FileType c setlocal tabstop=8 shiftwidth=8 softtabstop=8
+autocmd FileType cpp setlocal tabstop=8 shiftwidth=8 softtabstop=8
 autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
-autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
+" 'syntax on' to fix highlight not working on php file
+autocmd FileType php syntax on setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
 autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
 autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
 "autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
@@ -77,6 +90,14 @@ autocmd Syntax javascript set syntax=jquery   " JQuery syntax support
 let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
+
+" remove all trailing whitespace of current file
+fun! TrimWhitespace()
+    let l:save_cursor = getpos('.')
+    %s/\s\+$//e
+    call setpos('.', l:save_cursor)
+endfun
+
 
 "-----------------
 " Plugin settings
@@ -104,13 +125,13 @@ let g:rbpt_max = 16
 autocmd Syntax lisp,scheme,clojure,racket RainbowParenthesesToggle
 
 " === tabbar ===
-let g:Tb_MaxSize = 2
-let g:Tb_TabWrap = 1
+" let g:Tb_MaxSize = 2
+" let g:Tb_TabWrap = 1
 
-hi Tb_Normal guifg=white ctermfg=white
-hi Tb_Changed guifg=green ctermfg=green
-hi Tb_VisibleNormal ctermbg=252 ctermfg=235
-hi Tb_VisibleChanged guifg=green ctermbg=252 ctermfg=white
+" hi Tb_Normal guifg=white ctermfg=white
+" hi Tb_Changed guifg=green ctermfg=green
+" hi Tb_VisibleNormal ctermbg=252 ctermfg=235
+" hi Tb_VisibleChanged guifg=green ctermbg=252 ctermfg=white
 
 " === easy-motion ===
 let g:EasyMotion_leader_key = '<Leader>'
@@ -147,7 +168,7 @@ let g:tagbar_compact = 1
 " endif
 
 " === Nerd Tree ===
-let g:nerdtree_tabs_open_on_gui_startup=0
+let g:nerdtree_tabs_open_on_gui_startup=1
 let g:nerdtree_tabs_open_on_console_startup=0
 let NERDChristmasTree=0
 let NERDTreeWinSize=30
@@ -159,7 +180,7 @@ let NERDTreeWinPos = "right"
 
 " === nerdcommenter ===
 let NERDSpaceDelims=1
-" nmap <D-/> :NERDComToggleComment<cr>
+nnoremap <D-/> :NERDComToggleComment<cr>
 let NERDCompactSexyComs=1
 
 " === ZenCoding ===
@@ -201,9 +222,20 @@ let g:neocomplcache_omni_patterns.erlang = '[a-zA-Z]\|:'
 let g:SuperTabDefaultCompletionType = '<C-X><C-U>'
 let g:SuperTabRetainCompletionType=2
 
+" === cscope_maps ===
+nmap <silent> <F2> :!cscope -Rbq<cr>:cscope reset<cr>
+
+" === bbye ===
+nmap <silent> <leader>q :Bdelete<cr>
+
+
 " === ctrlp ===
 set wildignore+=*/tmp/*,*.so,*.o,*.a,*.obj,*.swp,*.zip,*.pyc,*.pyo,*.class,.DS_Store  " MacOSX/Linux
+let g:ctrlp_by_filename = 1
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
+let g:ctrlp_map = '<C-p>'
+let g:ctrlp_cmd = 'CtrlPCurWD' " default to current working dir file mode
+nnoremap <F1> :CtrlPBufTagAll<cr>
 
 " === vim-operator-hightlight ===
 let g:ophigh_color = '#00e5e5'
@@ -215,17 +247,21 @@ let g:syntastic_warning_symbol = '⚠'
 
 " === ultisnips ===
 let g:UltiSnipsExpandTrigger = "<C-e>"
-"let g:UltiSnipsListSnippets = "<C-tab>"  " list all available snippets
+let g:UltiSnipsListSnippets = "<C-tab>"  " list all available snippets
 let g:UltiSnipsJumpForwardTrigger = "<C-l>"
 let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 let g:UltiSnipsUsePythonVersion = 2
 
 " === YCM ===
-"let g:ycm_global_ycm_extra_conf = '/Users/siyuan/.ycm/templates/.ycm_extra_conf_c.py'
+au BufNewFile,BufRead *.c set filetype=cpp  " set filetype of .c file to cpp for YCM
 let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_confirm_extra_conf = 1
+"let g:ycm_auto_trigger = 1
+let g:ycm_min_num_of_chars_for_completion = 2
+let g:ycm_confirm_extra_conf = 0
 let g:ycm_filetype_specific_completion_to_disable = "{'javascript' : 1}"
 let g:ycm_key_invoke_completion = '<C-Space>'
+" disable annoying syntastic diagnostics
+let g:ycm_show_diagnostics_ui = 0
 
 " === delimitMate ===
 au FileType c,cpp let b:delimitMate_matchpairs = "(:),[:],{:}"
@@ -234,11 +270,12 @@ au FileType c,cpp let b:delimitMate_matchpairs = "(:),[:],{:}"
 " Keybindings for plugin toggle
 "nnoremap <F2> :set invpaste paste?<CR>
 "set pastetoggle=<F2>
-nnoremap <F2> :YcmForceCompileAndDiagnostics
-nmap <F5> :TagbarToggle<cr>
-nmap <F6> :NERDTreeToggle<cr>
-nmap <F3> :GundoToggle<cr>
-nmap <F4> :IndentGuidesToggle<cr>
+"nnoremap <F2> :YcmForceCompileAndDiagnostics
+nnoremap <F4> :TagbarToggle<cr>
+nnoremap <F5> :NERDTreeTabsToggle<cr>
+nnoremap <F8> :GundoToggle<cr>
+nnoremap <F10> :make push<cr>
+"nmap <F4> :IndentGuidesToggle<cr>
 nmap  <D-/> :
 nnoremap <leader>a :Ack
 nnoremap <leader>v V`]
@@ -275,17 +312,26 @@ vmap <D-]> >gv
 
 " eggcache vim
 nnoremap ; :
-:command W w
-:command WQ wq
-:command Wq wq
-:command Q q
-:command Qa qa
-:command QA qa
+" :command W w
+" :command WQ wq
+" :command Wq wq
+" :command Q q
+" :command Qa qa
+" :command QA qa
 
+" tabpage switch
+noremap 1 1gt
+noremap 2 2gt
+noremap 3 3gt
+noremap 4 4gt
+noremap 5 4gt
+noremap 6 6gt
+noremap 7 7gt
+noremap 8 8gt
 
 " for macvim
 if has("gui_running")
-    set go=aAce  " remove toolbar
+    set go=Ace  " remove toolbar; 'a': copy on selection
     "set transparency=10
     set guifont=Menlo:h14
     set showtabline=2
@@ -294,6 +340,9 @@ if has("gui_running")
     set linespace=2
     noremap <D-M-Left> :tabprevious<cr>
     noremap <D-M-Right> :tabnext<cr>
+    " cycle through buffers
+    noremap <Tab> :bnext<cr>
+    noremap <S-Tab> :bprevious<cr>
     map <D-1> 1gt
     map <D-2> 2gt
     map <D-3> 3gt
