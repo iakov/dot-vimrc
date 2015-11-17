@@ -30,6 +30,7 @@
 
 import os
 import ycm_core
+import glob
 
 # These are the compilation flags that will be used in case there's no
 # compilation database set (by default, one is not set).
@@ -38,7 +39,6 @@ flags = [
 '-Wall',
 '-Wextra',
 #'-Werror', # Fucking unused parameter 'argc'
-'-Wc++98-compat',
 '-Wno-long-long',
 '-Wno-variadic-macros',
 '-fexceptions',
@@ -79,6 +79,29 @@ flags = [
 '-isystem',
 './tests/gmock/include'
 ]
+
+
+# Add custom flags to improve autocomplete feature
+# by siyuan 2015-9-12
+#
+project_root='/Users/siyuan/projects/project2'
+
+flagsRec=[project_root + "/*", project_root + "/410kern/*", project_root + "/410user/*", project_root + "/user/*"]
+def AddDirsRecursively( flagsRec ):
+
+  global flags
+  new_flags = []
+  for flag in flagsRec:
+    for d in glob.glob(flag) :
+      if os.path.isdir(d):
+            new_flags.append('-I')
+            new_flags.append(d)
+
+
+  flags += new_flags
+
+
+AddDirsRecursively( flagsRec )
 
 # Set this to the absolute path to the folder (NOT the file!) containing the
 # compile_commands.json file to use that instead of 'flags'. See here for
